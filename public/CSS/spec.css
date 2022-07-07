@@ -1,0 +1,157 @@
+/*
+    Fonts
+    font-family: 'Arima', cursive;
+    font-family: 'Cinzel Decorative', cursive;
+    font-family: 'Merriweather', serif;
+    font-family: 'Ubuntu', sans-serif;
+*/
+
+a {
+    color: blue;
+}
+
+body {
+    background-color: rgb(224, 209, 209);
+    color: black;
+    font-family: 'Merriweather', serif;
+}
+
+.brand {
+    font-size: 1.45rem;
+    color: rgb(0, 114, 0);
+    text-align: start;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: black;
+}
+
+.btn-secondary a {
+    color: black;
+}
+
+.btn-secondary p {
+    color: black;
+}
+
+.date-text {
+    font-size: .9rem;
+    color: white;
+    text-align: right;
+}
+
+.error-msg {
+    color: rgb(226, 0, 0);
+    font-size: 1.75rem;
+    font-style: bold;
+    text-align: center;
+}
+
+.footer {
+    color: black;
+    font-size: .75rem;
+    text-align: center;
+}
+
+.group {
+    align-content: center;
+    align-items: center;
+    background-color: white;
+    border: thick double #000000;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 50%;
+    justify-content: center;
+    margin: auto;
+    margin-top: 15%;
+    padding: 5px;
+    width: 40%;
+}
+
+.group input {
+    background-color: black;
+    color: white;
+    font-size: .85rem;
+    margin: auto;
+    max-width: 60%;
+}
+
+.group label {
+    font-size: .65rem;
+    margin: auto;
+}
+
+.group li {
+    background-color: black;
+    color: white
+}
+
+.group select {
+    background-color: black;
+    color: white;
+}
+
+html {
+    min-height: 100%;
+}
+
+.navbar-brand {
+    color: black;
+}
+
+.nav-link {
+    color: black;
+}
+
+.navbar-bg {
+    background-color: #e1e1e100;
+    border-bottom: solid;
+}
+
+.notable-text {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.25rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.sm-title {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.table-highlighted {
+    background-color: rgb(165, 165, 165);
+    margin: auto;
+    width: 60%;
+}
+
+.table-highlighted th {
+    color: black;
+}
+
+.table-highlighted td {
+    color: black;
+}
+
+.table-highlighted a {
+    color: black;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: rgba(161, 161, 161, 0.24);
+    color: rgb(44, 44, 44);
+}
+
+.title {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.username-text {
+    color: rgb(68, 0, 255);
+}

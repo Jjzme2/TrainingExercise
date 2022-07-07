@@ -1,0 +1,156 @@
+/*
+    Fonts
+    font-family: 'Arima', cursive;
+    font-family: 'Cinzel Decorative', cursive;
+    font-family: 'Merriweather', serif;
+    font-family: 'Ubuntu', sans-serif;
+*/
+
+a {
+    color: blue;
+}
+
+body {
+    background-color: white;
+    color: black;
+}
+
+.brand {
+    font-size: 1.45rem;
+    text-align: start;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: black;
+}
+
+.btn-secondary a {
+    color: black;
+}
+
+.btn-secondary p {
+    color: black;
+}
+
+.date-text {
+    font-size: .9rem;
+    color: rgb(0, 0, 0);
+    text-align: right;
+}
+
+.error-msg {
+    color: rgb(226, 0, 0);
+    font-size: 1.75rem;
+    font-style: bold;
+    text-align: center;
+}
+
+.footer {
+    color: black;
+    font-size: .75rem;
+    text-align: center;
+}
+
+.group {
+    align-content: center;
+    align-items: center;
+    background-color: white;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 50%;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5%;
+    padding: 5px;
+    width: 40%;
+}
+
+.group input {
+    background-color: white;
+    color: black;
+    font-size: .85rem;
+    margin-left: 15%;
+    max-width: 60%;
+}
+
+.group label {
+    font-size: .65rem;
+}
+
+.group li {
+    background-color: white;
+    color: black
+}
+
+.group select {
+    background-color: white;
+    color: black;
+}
+
+html {
+    min-height: 100%;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.nav-link {
+    color: white;
+}
+
+.navbar-bg {
+    background-color: black;
+}
+
+.notable-text {
+    font-size: 1.25rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.sm-title {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.table-highlighted {
+    background-color: rgb(228, 225, 225);
+    border: solid;
+    margin: auto;
+    width: 60%;
+}
+
+.table-highlighted th {
+    background-color: white;
+    border-bottom: solid;
+    border-right: double 5px black;
+    color: black;
+}
+
+.table-highlighted td {
+    border-bottom: none;
+    border-right: double 5px black;
+    color: black;
+    font-style: none;
+}
+
+.table-highlighted a {
+    color: black;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: rgba(0, 0, 0, 0.404);
+    color: white;
+}
+
+.title {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.username-text {
+    color: rgb(68, 0, 255);
+}

@@ -1,0 +1,87 @@
+<!--------------------------------------------------------------------------- Templates --------------------------------------------------------------------------------------------------------------->
+
+<!--- SmallNote --->
+
+&&&&&&&&&& - Denotes attached - question and answer type
+
+
+<!---------------------------------------------------------------------------Research topics --------------------------------------------------------------------------------------------------------------->
+
+#CGI.SCRIPT_NAME#
+&&&&&&&&&&
+CGI is a scope http://learncfinaweek.com/course/index/section/Decision_Making_and_Scopes/item/Scopes
+
+
+Note: In the next topic, 'res' comes from the result of a query, found by setting the result attribute in the associated query.
+&&&&&&&&&&
+#res.generatedkey#
+&&&&&&&&&&
+Result of Query, also scope
+
+In URL: ? initializes parameters '&' separates vars  
+
+
+Scope.Identity
+&&&&&&&&&&
+Also Scope Related
+
+
+IF ## have cfqueryparam(All Dynamic variables(User Inputs)) 
+
+<legend class="notable-text">Permissions: </legend>
+<!--- For the below text, it will display in two separate buttons. If I wanted one button, though it seems to have functionality for both buttons, I could
+include both anchor tags in one div. What happens with several? Still good?
+Populate buttons with information from database would be fun too, but maybe Js? --->
+<div class="d-grid gap-2 col-3 mx-auto btn btn-secondary">
+    <a href="addEmp.cfm">Add Employee</a>
+</div>
+<div class="d-grid gap-2 col-3 mx-auto btn btn-secondary">
+    <a href="welcome.cfm">Go Home</a>
+</div>
+
+
+
+
+<!--------------------------------------------------------------------------- To-Do --------------------------------------------------------------------------------------------------------------->
+
+No Logout page?
+Empty variables, username can't be modified, address is never shown on full emp screen
+            
+REQUEST: Probably based on validation !Before insert do cfif username NEQ no numbers validation send with appropriate msg errors if parameter == ? Display error! 
+CHECK: Lessons 4 and 5
+
+'Welcome' Doesn't open the first run through or initial private runs (Likely same problem with structstarted not being checked).
+This happens a lot, especially when timeout, a similar problem though likely differently sourced, is that when my commandbox has been inactive for some time, the mail server stop
+responding.
+
+After Adding bootstrap, my project has a problem logging in a user initially. This was solved after about an hour yesterday, but it happened again today
+After going to logout screen, it worked well. Wasn't able to access admin pages. Maybe force logout after a set time would help with this?
+A potentially related, and similar issue happens sometimes with css, it doesn't always update immediately. --Do this on server restart, after restarting I had the same
+problem
+
+<!--------------------------------------------------------------------------- Check -From To-Do --------------------------------------------------------------------------------------------------------------->
+
+No Logout page?
+
+
+<!--------------------------------------------------------------------------- Questions --------------------------------------------------------------------------------------------------------------->
+
+Insert Parameters to nvarchar? Eg (50) in script? - No
+
+<!--------------------------------------------------------------------------- Notes --------------------------------------------------------------------------------------------------------------->
+Consider compound expressions -- 
+
+<cfif structKeyExists( myStruct, 'age' ) AND myStruct.age LTE 7>
+    ..code..
+</cfif>
+
+
+
+
+The second cfcase declaration above lists more than one value. If the expression is either 9 OR 10, the code will execute. The default delimiter is ','. 
+If the value contains a comma, it is automatically treated as a list. If you want the value to include a comma in the string, simply specify an alternate delimiter 
+using the delimiters attribute like this:
+
+<cfcase value="9,10" delimiters="|">
+    ..code..
+</cfcase>

@@ -1,0 +1,199 @@
+            /* Colors:
+
+    Purple - #301B3F
+    Teal - #3C415C
+    Black - #151515
+    Grey - #B4A5A5
+        */
+            /*
+        Fonts
+font-family: 'Arima', cursive;
+font-family: 'Cinzel Decorative', cursive;
+font-family: 'Merriweather', serif;
+font-family: 'Ubuntu', sans-serif;
+                */
+            
+            a {
+                color: #B4A5A5;
+                text-decoration: none;
+            }
+            
+            body {
+                background: rgb(0, 0, 0);
+                background: -moz-linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 255, 1) 75%, rgba(255, 255, 255, 1) 100%);
+                background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 255, 1) 75%, rgba(255, 255, 255, 1) 100%);
+                background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 255, 1) 75%, rgba(255, 255, 255, 1) 100%);
+                filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
+                color: #3fffe0;
+                font-family: 'Ubuntu', sans-serif;
+            }
+            
+            .brand {
+                font-size: 1.45rem;
+            }
+            
+            .btn-secondary {
+                background-color: #01002700;
+                color: #c7cffd;
+            }
+            
+            .btn-secondary a {
+                color: #8093ff;
+            }
+            
+            .date-text {
+                color: rgb(0, 179, 202);
+                font-size: .9rem;
+                text-align: right;
+            }
+            
+            .error-msg {
+                color: rgb(134, 0, 0);
+                font-size: 1.75rem;
+                font-style: italic;
+                text-align: center;
+                /*text-shadow: 2px 2px #000000;*/
+            }
+            
+            .footer {
+                color: #c0c0c0;
+                font-size: .75rem;
+                text-align: center;
+            }
+            
+            .group {
+                align-content: center;
+                align-items: center;
+                background-color: #8093ff00;
+                box-shadow: -3px -3px 3px #ffffff;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: auto;
+                margin-top: 7%;
+                padding: 5px;
+                width: 40%;
+            }
+            
+            .group input {
+                background-color: #15151500;
+                color: #b2bdf7;
+                font-size: 1.1rem;
+            }
+            
+            .group input:focus {
+                background-color: #15151533;
+                color: #b2bdf7;
+                font-size: 1.1rem;
+            }
+            
+            .group label {
+                font-size: .8rem;
+            }
+            
+            .group li {
+                background-color: #418f8b00;
+                color: #2cd5ff
+            }
+            
+            .group select {
+                background-color: #15151500;
+                color: #2cd5ff
+            }
+            
+            .group select {
+                background-color: #15151500;
+                color: #2cd5ff
+            }
+            
+            html {
+                min-height: 100%;
+            }
+            
+            .navbar-brand {
+                color: rgb(0, 179, 202);
+            }
+            
+            .nav-link {
+                color: rgb(0, 179, 202);
+            }
+            
+            .navbar-bg {
+                background-color: #e1e1e100;
+            }
+            
+            .notable-text {
+                font-family: 'Merriweather', serif;
+                font-size: 1.25rem;
+                text-shadow: 1px 1px #313131;
+                text-align: center;
+                font-style: italic;
+            }
+            
+            .sm-title {
+                font-family: 'Merriweather', serif;
+                font-size: 2rem;
+                text-shadow: 1px 1px #313131;
+                text-align: center;
+            }
+            
+            .table-highlighted {
+                background-color: #01002700;
+                border-bottom: groove white;
+                margin: auto;
+                width: 60%;
+            }
+            
+            .table-highlighted:hover {
+                background-color: #ffffff25;
+                box-shadow: -3px -3px 3px black;
+            }
+            
+            .table-highlighted tr:hover {
+                background-color: #00000059;
+                border: double white;
+                text-align: center;
+            }
+            
+            .table-highlighted th {
+                border-bottom: none;
+                text-align: center;
+            }
+            
+            .table-highlighted td {
+                color: #ffffff;
+                border-bottom: none;
+                text-align: right;
+            }
+            
+            .table-highlighted td:hover {
+                color: #ffffff;
+                border-bottom: none;
+                border: dotted 5px rgba(165, 165, 165, 0.33);
+                text-align: right;
+            }
+            
+            .table-highlighted a {
+                color: #fffb00;
+            }
+            /*
+            The below code will impact every other line in the striped table
+            */
+            
+            .table-striped>tbody>tr:nth-child(odd)>td,
+            .table-striped>tbody>tr:nth-child(odd)>th {
+                background-color: rgba(98, 166, 255, 0.24);
+                color: rgb(0, 0, 0);
+            }
+            
+            .title {
+                font-family: 'Merriweather', serif;
+                font-size: 3rem;
+                text-shadow: 2px 2px #313131;
+                text-align: center;
+            }
+            
+            .username-text {
+                color: red;
+            }
