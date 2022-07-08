@@ -3,7 +3,10 @@
 </cfif>
 
 <cfif !structKeyExists(session, 'user')>
-    <cfset session.user = {}>
+    <!--- <cfset session.user = {}> --->
+    <!--- This will auto logout users when the server is restarted, preventing the recent problem I've been having where on server restart, I'm unable to login
+    with valid credentials.--->
+    <cflocation  url="/logout.cfm">
 </cfif>
 <!--------------------------------------------------------------------------- session.user.name exists --------------------------------------------------------------------------------------------------------------->
 <cfif structKeyExists(session.user, 'USERNAME')>

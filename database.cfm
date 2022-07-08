@@ -94,10 +94,10 @@
                     </cfif>
                     <br>
     
-                    <div class="flex-container mx-5">
+                    <div class="flex-container">
                         <cfset poolIndex=0>  
 
-                        <legend>Employee Pool:</legend>
+                        <h1 class="sm-title">Employee Pool:</h1>
 
                         <table class="table table-sm table-striped table-highlighted">
                             <tr>

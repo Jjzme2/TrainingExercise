@@ -109,6 +109,11 @@ html {
     border-bottom: solid;
 }
 
+.navbar-toggler {
+    border: white solid;
+    background-color: white;
+}
+
 .notable-text {
     font-family: 'Ubuntu', sans-serif;
     font-size: 1.25rem;

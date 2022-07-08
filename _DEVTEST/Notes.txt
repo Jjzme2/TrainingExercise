@@ -59,6 +59,11 @@ After going to logout screen, it worked well. Wasn't able to access admin pages.
 A potentially related, and similar issue happens sometimes with css, it doesn't always update immediately. --Do this on server restart, after restarting I had the same
 problem
 
+JS Disabled:
+Theme button isn't working.
+IsActive display not showing
+
+
 <!--------------------------------------------------------------------------- Check -From To-Do --------------------------------------------------------------------------------------------------------------->
 
 No Logout page?

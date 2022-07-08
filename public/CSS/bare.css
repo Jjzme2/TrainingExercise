@@ -104,6 +104,11 @@ html {
     background-color: black;
 }
 
+.navbar-toggler {
+    border: white solid;
+    background-color: white;
+}
+
 .notable-text {
     font-size: 1.25rem;
     text-align: center;
