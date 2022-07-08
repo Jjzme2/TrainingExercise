@@ -1,4 +1,3 @@
-<!---Incompatiblity --->
 </body>
 <footer>
     <div class="container footer">

@@ -24,6 +24,8 @@
         <link href="/public/CSS/spec.css" rel="stylesheet" type="text/css">
       <cfelseif session.Theme EQ "fun">
         <link href="/public/CSS/fun.css" rel="stylesheet" type="text/css">
+      <cfelseif session.Theme EQ "plain">
+        <link href="/public/CSS/plain.css" rel="stylesheet" type="text/css">
       <cfelse> <!--- bare --->
         <link href="/public/CSS/bare.css" rel="stylesheet" type="text/css">
       </cfif>
@@ -70,29 +72,29 @@
                 </li>
               </cfif>
             </cfif>
-
-            <cfif !structKeyExists(session, 'theme')>
-              <cfset session.Theme = "bare">
-            </cfif>
-
-            <div class="dropdown">
-              <button class="btn btn-md btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                <cfoutput>#session.theme#</cfoutput>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="/setTheme.cfm?theme=general">General</a></li>
-                <li><a class="dropdown-item" href="/setTheme.cfm?theme=fun">Fun</a></li>
-                <li><a class="dropdown-item" href="/setTheme.cfm?theme=spec">Spec</a></li>
-                <li><a class="dropdown-item" href="/setTheme.cfm?theme=bare">Bare</a></li>
-
-              </ul>
-            </div>
-
             <li class="nav-item">
               <a class="nav-link" href="/logout.cfm">Log out</a>
             </li>
           </ul>
         </div> 
+
+        <cfif !structKeyExists(session, 'theme')>
+          <cfset session.Theme = "bare">
+        </cfif>
+
+        <div class="dropdown">
+          <button class="btn btn-md btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <cfoutput>#session.theme#</cfoutput>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="/setTheme.cfm?theme=general">General</a></li>
+            <li><a class="dropdown-item" href="/setTheme.cfm?theme=fun">Fun</a></li>
+            <li><a class="dropdown-item" href="/setTheme.cfm?theme=plain">Plain</a></li>
+            <li><a class="dropdown-item" href="/setTheme.cfm?theme=spec">Spec</a></li>
+            <li><a class="dropdown-item" href="/setTheme.cfm?theme=bare">Bare</a></li>
+          </ul>
+        </div>
+
         <cfoutput>
           <p class="date-text">
             Today is <br>

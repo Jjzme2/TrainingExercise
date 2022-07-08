@@ -115,8 +115,18 @@ font-family: 'Ubuntu', sans-serif;
                 color: rgb(0, 179, 202);
             }
             
+            .navbar-brand:hover {
+                color: lightblue;
+                font-size: 1.3rem;
+            }
+            
             .nav-link {
                 color: rgb(0, 179, 202);
+            }
+            
+            .nav-link:hover {
+                color: lightblue;
+                font-size: 1.3rem;
             }
             
             .navbar-bg {

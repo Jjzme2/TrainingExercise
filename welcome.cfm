@@ -53,7 +53,7 @@
                         </th>
 
                         <th>
-                            Company Name:
+                            Company Name
                         </th>
                         <cfloop query="companies">
                             <cfset index++>
