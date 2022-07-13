@@ -6,13 +6,13 @@
             <p class="sm-title">Errors:</p>
             <cfloop array=#session.Errors# item="item">
                 <cfoutput>
-                    <p class="error-msg">#item#</p>
+                    <p class="error-text" id="error-text"></p>
                 </cfoutput>
                 <br>
             </cfloop>
             <cfelse>
                 <p>No Errors Found!</p>
-                <cflocation  url="/login.cfm" addtoken="no">
+                <!--- <cflocation  url="/login.cfm" addtoken="no"> --->
             </cfif>
         <div class="d-grid gap-2 col-6 mx-auto btn btn-secondary">
         <a href="/login.cfm">Go back</a>

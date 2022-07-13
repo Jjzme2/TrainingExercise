@@ -39,6 +39,8 @@
             </cfquery>
 <!--------------------------------------------------------------------------- Page --------------------------------------------------------------------------------------------------------------->
             <cfinclude  template="header.cfm">
+            <cfinclude  template="/navbar.cfm">
+
             <cfset index=0>
             <cfoutput>
                 <div>
@@ -120,11 +122,11 @@
                                 </tr>
                             </cfloop>
                         </table>
-                        <legend class="notable-text">Permissions: </legend>
-                        <div class="d-grid gap-2 col-6 mx-auto btn btn-secondary">
+                        
+                        <div class="d-grid gap-2 col-2 mx-auto btn btn-secondary">
                         <a href="addEmp.cfm?COMPANYID=#qry.COMPANYID#">Add Employee</a>
                         </div>
-                        <div class="d-grid gap-2 col-6 mx-auto btn btn-secondary">
+                        <div class="d-grid gap-2 col-2 mx-auto btn btn-secondary">
                             <a href="welcome.cfm">Go Home</a>
                         </div>                        
                 </div>

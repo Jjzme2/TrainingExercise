@@ -28,6 +28,8 @@
 <!--------------------------------------------------------------------------- Page --------------------------------------------------------------------------------------------------------------->
         
             <cfinclude  template="header.cfm">
+            <cfinclude  template="/navbar.cfm">
+
         
 
         <cfset index=0>
@@ -75,19 +77,17 @@
                         <h3>Hmm, seems like we're a newer company, please contact an administrator to add some employees!</h3>
                     </cfif>
                 </cfif>
-                <legend class="notable-text">Permissions: </legend>
-                <div class="d-grid gap-2 col-3 mx-auto btn btn-secondary">
+                <div class="d-grid gap-2 col-2 mx-auto btn btn-secondary">
                     <a href="addEmp.cfm">Add Employee</a>
                 </div>
-                <div class="d-grid gap-2 col-3 mx-auto btn btn-secondary">
+                <div class="d-grid gap-2 col-2 mx-auto btn btn-secondary">
                     <a href="welcome.cfm">Go Home</a>
                 </div>
             </div>
         </div>
         </cfoutput>
-        <!---
-        <cfinclude  template="footer.cfm">
-        --->
+        <cfinclude  template="/footer.cfm"> 
+
     <cfelse>
         <cfset session.Errors.Append("Please ensure you have appropriate permission to access this content.")>
         <cflocation  url="/errPage.cfm" addToken="no"> 

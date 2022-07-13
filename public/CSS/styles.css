@@ -19,11 +19,11 @@ font-family: 'Ubuntu', sans-serif;
             }
             
             body {
-                background: rgb(176, 83, 255);
-                background: -moz-linear-gradient(180deg, rgba(176, 83, 255, 1) 0%, rgba(158, 180, 255, 1) 25%, rgba(63, 255, 224, 1) 75%, rgba(251, 165, 255, 1) 100%);
-                background: -webkit-linear-gradient(180deg, rgba(176, 83, 255, 1) 0%, rgba(158, 180, 255, 1) 25%, rgba(63, 255, 224, 1) 75%, rgba(251, 165, 255, 1) 100%);
-                background: linear-gradient(180deg, rgba(176, 83, 255, 1) 0%, rgba(158, 180, 255, 1) 25%, rgba(63, 255, 224, 1) 75%, rgba(251, 165, 255, 1) 100%);
-                filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#b053ff", endColorstr="#fba5ff", GradientType=1);
+                background-image: url("/public/Images/SunnyCity.jpg");
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
                 color: #3fffe0;
                 font-family: 'Arima', cursive;
             }

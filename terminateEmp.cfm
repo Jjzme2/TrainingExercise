@@ -14,10 +14,14 @@
             </cfquery>
 <!------    --------------------------------------------------------------------- Page --------------------------------------------------------------------------------------------------------------->
             <cfinclude  template="/header.cfm">
+            <cfinclude  template="/navbar.cfm">
+
             <cfoutput>
-                <div class="flex-container mx-5 group">
+                <div class="flex-container group">
                     <h1 class="sm-title">Are you sure you want to delete <span class="notable-text">#qry.FIRSTNAME# #qry.LASTNAME#</span></h1>
-                    <a class="btn btn-secondary" href="/Gateway/Deactivate.cfm?ID=#URL.ID#">Terminate</a>
+                    <div class="d-grid gap-2 col-2 mx-auto">
+                        <a class="btn-secondary" href="/Gateway/Deactivate.cfm?ID=#URL.ID#">Terminate</a>
+                    </div>
                 </div>
             </cfoutput>
             <cfinclude  template="/footer.cfm">

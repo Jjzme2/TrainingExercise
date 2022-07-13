@@ -27,8 +27,10 @@
 <!--------------------------------------------------------------------------- Page --------------------------------------------------------------------------------------------------------------->
 
         <cfinclude  template="header.cfm">
+        <cfinclude  template="/navbar.cfm">
+
         <cfoutput>
-            <div class="flex-container mx-auto">
+            <div class="flex-container group-nbg">
 
                 <div class="card group">
                     <div class="sm-title">
@@ -41,6 +43,9 @@
                             (User)
                         </cfif>
                     </div>
+                </div>
+
+                <div class="card group">
 
                     <div>
                         <h1 class="notable-text">User Info</h1>
@@ -49,7 +54,11 @@
                             <li class="list-group-item"><span class="notable-text">First: </span> #qry.FIRSTNAME#</li>
                             <li class="list-group-item"><span class="notable-text">Email: </span> #qry.EMAIL#</li>
                     </div>
-                    <div>
+                </div>
+
+                <div class="card group">
+
+
                         <h1 class="notable-text">Activity</h1>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><span class="notable-text">Active Since: </span> #DateTimeFormat(qry.RECENTACTIVATION, "yyyy-mm-dd")#</li>
@@ -57,19 +66,19 @@
                             <li class="list-group-item"><span class="notable-text">Start Date: </span> #DateTimeFormat(qry.STARTDATE, "yyyy-mm-dd")#</li>
                             <li class="list-group-item"><span class="notable-text">Last Login: </span> #DateTimeFormat(qry.LASTLOGIN, "yyyy-mm-dd")#</li>
                     </div>
-                    <div>
-                        <cfif #session.USER.ISADMIN#>
-                            <legend class="notable-text">Permissions: </legend>
+                </div>
+
+                    <cfif #session.USER.ISADMIN#>
                             <cfif qry.ISACTIVE EQ 1>
-                                <div class="d-grid gap-2 mx-auto btn btn-secondary">
+                                <div class="d-grid gap-2 col-2 mx-auto btn-secondary">
                                     <a href="/modifyEmp.cfm?ID=#URL.ID#">Modify</a>
                                 </div>
-                                <div class="d-grid gap-2 mx-auto btn btn-secondary">
+                                    <div class="d-grid gap-2 col-2 mx-auto btn-secondary">
                                     <a href="/terminateEmp.cfm?ID=#URL.ID#">Terminate</a>
-                                </div>
+                                    </div>
                             <cfelse>
                                 <cfif qry.COMPANYID NEQ 10>
-                                    <div class="d-grid gap-2 mx-auto btn btn-secondary">
+                                    <div class="d-grid gap-2 col-2 mx-auto btn btn-secondary">
                                         <a href="/Gateway/Activate.cfm?ID=#URL.ID#">Activate</a>
                                     </div>
                                 <cfelse>
@@ -87,16 +96,16 @@
                                 </cfif>
                             </cfif>
                         </cfif>
-                        <div class="d-grid gap-2 mx-auto btn btn-secondary">
-                            <cfif #qry.COMPANYID# NEQ 10>
-                                <a href="/company.cfm?ID=#qry.CompanyID#">Return to Company</a>
-                            <cfelse>
-                                <a href="/database.cfm">Return to Database</a>
-                            </cfif>
-                        </div>
                     </div>
                 </div>
             </div>    
+            <div class="d-grid gap-2 col-2 mx-auto btn-secondary">
+                <cfif #qry.COMPANYID# NEQ 10>
+                    <a href="/company.cfm?ID=#qry.CompanyID#">Return to Company</a>
+                <cfelse>
+                    <a href="/database.cfm">Return to Database</a>
+                </cfif>
+            </div>
         </cfoutput>
         <cfinclude  template="footer.cfm">
     <cfelse>

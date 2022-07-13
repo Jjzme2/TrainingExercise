@@ -20,7 +20,7 @@
                 <cfset session.Errors.append("Most street names and city names do not contain numbers, are you sure this is what you wanted?")>
             </cfif>
 
-            <cfif form.password != form.confPass>
+            <cfif form.pass != form.confPass>
                 <cfset session.Errors.append("Passwords must match!")>
             </cfif>
         <cfelse>
@@ -28,7 +28,6 @@
         </cfif>
     
         <cfif len(session.Errors) GT 0>
-            <cflocation  url="/errPage.cfm" addtoken="no">
 <!---------------------------------------------------------------------------Validation PASS --------------------------------------------------------------------------------------------------------------->
     
         <cfelse>
@@ -98,7 +97,7 @@
                     (
                         <cfqueryparam value=#rslt# cfsqltype="cf_sql_integer">
                         ,<cfqueryparam value='#form.username#' cfsqltype="cf_sql_nvarchar">
-                        ,<cfqueryparam value='#form.password#' cfsqltype="cf_sql_nvarchar">
+                        ,<cfqueryparam value='#form.pass#' cfsqltype="cf_sql_nvarchar">
                         ,0
                         ,<cfqueryparam value=#form.email# cfsqltype="cf_sql_nvarchar">
                         <cfif structKeyExists(form, 'admin')>

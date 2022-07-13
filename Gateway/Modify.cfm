@@ -7,7 +7,6 @@
     <cfif #session.IsLoggedIn# EQ 1> <!--- Good User --->    
         <cfset session.Errors=arrayNew(1)>
 
-
 <!---------------------------------------------------------------------------Validation --------------------------------------------------------------------------------------------------------------->
         <!--- Action code. First make sure the form was submitted. --->
         <cfif isDefined("form.submit")>
@@ -31,7 +30,6 @@
         </cfif>
     
         <cfif len(session.Errors) GT 0>
-            <cflocation  url="/errPage.cfm" addtoken="no">
 <!---------------------------------------------------------------------------Validation PASS --------------------------------------------------------------------------------------------------------------->
     
         <cfelse>

@@ -17,22 +17,29 @@
             </cfquery>
 
             <cfinclude  template="header.cfm"> 
+            <cfinclude  template="/navbar.cfm">
+
 
             <cfoutput>
-                <form action="/Gateway/AddCompany.cfm" method="post">
+                <h1 class="error-text" id="error-text"></h1>
+
+                <form action="/Gateway/AddCompany.cfm" name="companyForm" method="post" id="companyForm">
 <!---------------------------------------------------------------------------Contact Info --------------------------------------------------------------------------------------------------------------->
                     <div class="flex-container group">
+
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="companyName" name="companyName" placeholder="The Company">
+                            <input type="text" class="form-control" id="companyName" name="companyName" placeholder="The Company" value="">
                             <label for="companyName">Company:</label>
                         </div>
 <!---------------------------------------------------------------------------submit --------------------------------------------------------------------------------------------------------------->
-                        <div class="d-grid gap-2 col-6">
-                            <input class="btn btn-secondary" type="submit" value="Add Company" name="submit">
-                        </div>
+                    </div>
+                    <div class="d-grid gap-2 col-2 mx-auto">
+                        <input class="btn-secondary" type="submit" value="Submit" name="submit" id="submit">
                     </div>
                 </form>
             </cfoutput>
+            <cfinclude  template="/footer.cfm"> 
+
         <cfelse>
             <cfset session.Errors.Append("Please ensure you have appropriate permission to access this content.")>
             <cflocation  url="/errPage.cfm" addToken="no">    

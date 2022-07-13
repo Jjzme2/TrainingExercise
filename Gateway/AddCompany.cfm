@@ -27,7 +27,7 @@
                     </cfquery>
                     <cflocation  url="/login.cfm" addtoken="no">
                 <cfelse>
-                    <cfset session.Errors.Append("Please make sure you have fully filled out the Company Form when creating a new company.")>
+                    <!--- <cfset session.Errors.Append("Please make sure you have fully filled out the Company Form when creating a new company.")> --->
                     <cflocation  url="/errPage.cfm" addtoken="no">                  
                 </cfif>
 

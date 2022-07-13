@@ -87,6 +87,19 @@ font-family: 'Ubuntu', sans-serif;
                 color: #b2bdf7;
                 font-size: 1.1rem;
             }
+            /* Add Img */
+            .group input:invalid {
+                background-color: #f100006e;
+                box-shadow: 1px 1px 5px yellow;
+                color: #b2bdf7;
+                font-size: 1rem;
+            }
+
+            .group input:valid {
+                background-color: #f1000000;
+                color: #b2bdf7;
+                font-size: 1.1rem;
+            }
             
             .group label {
                 font-size: .8rem;

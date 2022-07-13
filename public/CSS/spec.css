@@ -11,41 +11,56 @@ a {
 }
 
 body {
-    background-color: rgb(224, 209, 209);
+    background-color: rgba(255, 255, 255, 0.404);
     color: black;
     font-family: 'Merriweather', serif;
 }
 
 .brand {
     font-size: 1.45rem;
-    color: rgb(0, 114, 0);
-    text-align: start;
+    color: rgb(74, 124, 103);
+    align-self: baseline;
+    margin-top: 0;
+    margin-bottom: 5%;
+    font-family: sans-serif;
+    font-weight: bold;
 }
 
 .btn-secondary {
-    background-color: white;
-    color: black;
+    background-color: rgb(0, 0, 241);
+    color: rgb(255, 255, 255);
+    border: solid 1px black;
+    margin: 2%;
+}
+
+.btn-secondary:hover{
+    background-color: rgb(1, 1, 165);
+
 }
 
 .btn-secondary a {
-    color: black;
+    color: rgb(253, 253, 253);
+    text-align: center;
 }
 
 .btn-secondary p {
-    color: black;
+    color: rgb(253, 253, 253);
 }
 
 .date-text {
     font-size: .9rem;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: right;
 }
 
-.error-msg {
+
+.error-text{
     color: rgb(226, 0, 0);
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     font-style: bold;
+    margin-top: 5%;
     text-align: center;
+    min-width: 800px;
 }
 
 .footer {
@@ -54,42 +69,94 @@ body {
     text-align: center;
 }
 
+.form-group {
+    width: 80%;
+}
+
 .group {
-    align-content: center;
-    align-items: center;
-    background-color: white;
-    border: thick double #000000;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 50%;
-    justify-content: center;
+    align-items: flex-start;
+    background-color: rgb(221, 221, 221);
+    box-shadow: 1px 1px 5px black;
+    display: flex;
+    min-height: 300px;
     margin: auto;
-    margin-top: 15%;
+    margin-top: 10%;
     padding: 5px;
-    width: 40%;
+    width: 450px;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.group-nbg {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0);
+    display: flex;
+    min-height: 300px;
+    margin: auto;
+    margin-top: 10%;
+    padding: 5px;
+    width: 450px;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.group form {
+    display: flex;
+    width: 90%;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.form-btn {
+    background-color: rgb(0, 153, 255);
+    border-radius: 0;
+    color: white;
+    margin-top: 5%;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.form-title {
+    font-size: 1.45rem;
+    color: black;
+    align-self: baseline;
+    margin-bottom: 5%;
+    font-family: sans-serif;
+    font-weight: bold;
 }
 
 .group input {
-    background-color: black;
-    color: white;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    border-bottom: solid 1px black;
+    border-radius: 0;
+    color: black;
     font-size: .85rem;
     margin: auto;
-    max-width: 60%;
+    margin-bottom: 5%;
 }
 
 .group label {
     font-size: .65rem;
+    display: inline-flex;
     margin: auto;
 }
 
 .group li {
-    background-color: black;
-    color: white
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+    max-width: 100%;
 }
 
 .group select {
-    background-color: black;
-    color: white;
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+    display: block;
 }
 
 html {
@@ -110,7 +177,7 @@ html {
 }
 
 .nav-link:hover {
-    color: lightblue;
+    color: rgb(0, 0, 0);
     font-size: 1.3rem;
 }
 
@@ -121,12 +188,12 @@ html {
 
 .navbar-toggler {
     border: white solid;
-    background-color: white;
+    background-color: rgb(0, 153, 255);
 }
 
 .notable-text {
     font-family: 'Ubuntu', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.33rem;
     text-align: center;
     font-style: italic;
 }
@@ -138,7 +205,7 @@ html {
 }
 
 .table-highlighted {
-    background-color: rgb(165, 165, 165);
+    background-color: rgb(235, 235, 235);
     margin: auto;
     width: 60%;
 }
@@ -157,7 +224,7 @@ html {
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-    background-color: rgba(161, 161, 161, 0.24);
+    background-color: rgba(66, 66, 66, 0.185);
     color: rgb(44, 44, 44);
 }
 

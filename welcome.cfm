@@ -34,7 +34,9 @@
                    
 <!--------------------------------------------------------------------------- Page --------------------------------------------------------------------------------------------------------------->
         
-        <cfinclude  template="header.cfm"> 
+        <cfinclude  template="/header.cfm"> 
+        <cfinclude  template="/navbar.cfm">
+
         <cfset session.Errors = []>
         <cfoutput>
             <div class="flex-container mx-5">
@@ -72,7 +74,6 @@
                 
                     <br>
                 <cfif #session.USER.ISADMIN#>
-                    <legend class="notable-text">Permissions: </legend>
                     <div class="d-grid gap-2 col-6 mx-auto btn btn-secondary">
                     <a href="addCompany.cfm">Add Company</a>
                     </div>
