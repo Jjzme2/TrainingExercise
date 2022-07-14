@@ -22,14 +22,12 @@
 
             <cfoutput>
                 <h1 class="error-text" id="error-text"></h1>
-
                 <form action="/Gateway/AddCompany.cfm" name="companyForm" method="post" id="companyForm">
 <!---------------------------------------------------------------------------Contact Info --------------------------------------------------------------------------------------------------------------->
                     <div class="flex-container group">
-
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="companyName" name="companyName" placeholder="The Company" value="">
                             <label for="companyName">Company:</label>
+                            <input type="text" class="form-control" id="companyName" name="companyName" value="">
                         </div>
 <!---------------------------------------------------------------------------submit --------------------------------------------------------------------------------------------------------------->
                     </div>
