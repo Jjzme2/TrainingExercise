@@ -10,28 +10,41 @@
 <!---------------------------------------------------------------------------Validation --------------------------------------------------------------------------------------------------------------->
         <!--- Action code. First make sure the form was submitted. --->
         <cfif isDefined("form.submit")>
-            <cfif reFind("[0-9]+", #form.fname#) || reFind("[0-9]+", #form.lname#)>
-                <cfset session.Errors.append("Most first names and last names do not contain numbers, are you sure this is what you wanted?")>
+            <cfif isValid("variableName", #form.fname#) && isValid("variableName", #form.lname#)>
+                <cfif reFind("[0-9]+", #form.fname#) || reFind("[0-9]+", #form.lname#)>
+                    <cfset session.Errors.append("Most first names and last names do not contain numbers, are you sure this is what you wanted?")>
+                </cfif>
+            <cfelse>
+                <cfset session.Errors.append("All Fields must be filled out.")>
             </cfif>
-    
+            
             <cfif #form.username# EQ ''>
-                <cfset session.Errors.append("Username must be filled out.")>
+                <cfset session.Errors.append("All Fields must be filled out.")>
             </cfif>
 
-            <cfif #form.pass# NEQ #form.confPass#>
-                <cfset session.Errors.append("Passwords must match.")>
+            <cfif isValid("variableName", #form.pass#) && isValid("variableName", #form.confPass#)>
+                <cfif #form.pass# NEQ #form.confPass#>
+                    <cfset session.Errors.append("Passwords must match.")>
+                </cfif>
+            <cfelse>
+                <cfset session.Errors.append("All Fields must be filled out.")>
             </cfif>
 
-            <cfif reFind("[0-9]+", #form.street#) || reFind("[0-9]+", #form.city#)>
-                <cfset session.Errors.append("Most street names and city names do not contain numbers, are you sure this is what you wanted?")>
+            <cfif isValid("variableName", #form.street#) && isValid("variableName", #form.city#)>
+                <cfif reFind("[0-9]+", #form.street#) || reFind("[0-9]+", #form.city#)>
+                    <cfset session.Errors.append("Most street names and city names do not contain numbers, are you sure this is what you wanted?")>
+                </cfif>
+            <cfelse>
+                <cfset session.Errors.append("All Fields must be filled out.")>
             </cfif>
+
         <cfelse>
             <cfset session.Errors.append("Unable to find a form to check.")>
         </cfif>
     
         <cfif len(session.Errors) GT 0>
 <!---------------------------------------------------------------------------Validation PASS --------------------------------------------------------------------------------------------------------------->
-    
+    <cflocation  url="/errPage.cfm" addtoken="no">
         <cfelse>
 
             <cfquery name="qry" datasource="empdeets" result="res">

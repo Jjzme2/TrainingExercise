@@ -15,24 +15,8 @@
     <!--- Font Awesome --->
     <script src="https://kit.fontawesome.com/fa6d840559.js" crossorigin="anonymous"></script>
 
-    <!--- Set Theme Here --->
-    <cfif structKeyExists(session, 'theme')>
-      <!--- Personal CSS --->
-      <cfif session.Theme EQ "general">
-        <link href="/public/CSS/styles.css" rel="stylesheet" type="text/css">
-      <cfelseif session.Theme EQ "spec">
-        <link href="/public/CSS/spec.css" rel="stylesheet" type="text/css">
-      <cfelseif session.Theme EQ "fun">
-        <link href="/public/CSS/fun.css" rel="stylesheet" type="text/css">
-      <cfelseif session.Theme EQ "plain">
-        <link href="/public/CSS/plain.css" rel="stylesheet" type="text/css">
-      <cfelse> <!--- bare --->
-        <link href="/public/CSS/bare.css" rel="stylesheet" type="text/css">
-      </cfif>
-    <cfelse>
       <link href="/public/CSS/spec.css" rel="stylesheet" type="text/css">
 
-    </cfif>
 
 
 

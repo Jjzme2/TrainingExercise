@@ -8,11 +8,15 @@
         <cfif session.User.ISADMIN EQ "true">
 <!---------------------------------------------------------------------------Validation --------------------------------------------------------------------------------------------------------------->
         <!--- Action code. First make sure the form was submitted. --->
-            <cfif !isDefined("form.submit")>
+            <cfif !isDefined("form.submit")>               
                 <cfset session.Errors.append("Unable to find a form to check.")>
                 <cflocation  url="/errPage.cfm" addtoken="no">
 <!---------------------------------------------------------------------------Validation PASS --------------------------------------------------------------------------------------------------------------->
             <cfelse>
+                <cfif !isValid("variableName", #form.companyName#)>
+                    <cfset session.Errors.Append("Please make sure you have fully filled out the Company Form when creating a new company.")>
+               </cfif>
+               
                 <cfif len(form.companyName) GT 0>
                     <cfquery name="qry" datasource="empdeets" result="res">
                         INSERT INTO 
@@ -27,7 +31,6 @@
                     </cfquery>
                     <cflocation  url="/login.cfm" addtoken="no">
                 <cfelse>
-                    <!--- <cfset session.Errors.Append("Please make sure you have fully filled out the Company Form when creating a new company.")> --->
                     <cflocation  url="/errPage.cfm" addtoken="no">                  
                 </cfif>
 

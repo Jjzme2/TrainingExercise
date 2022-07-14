@@ -69,7 +69,7 @@
 
                 <div class="flex-container group-nbg">
 
-                    <h1 class="error-text" id="error-text"></h1>
+<!---                     <h1 class="error-text" id="error-text"></h1> --->
 
                     <form class="form" action="/Gateway/Modify.cfm?ID=#uQry.EMPLOYEEID#" name="myForm" id="myForm" method="post">
                         <!--------------------------------------------------------------------------- NAME INFO --------------------------------------------------------------------------------------------------------------->
@@ -87,7 +87,7 @@
         
                              <div class="form-input">
                                 <label for="suffix">Name Suffix:</label>
-                                <select name="suffix" class="form-select-sm" aria-label="Modify Name Suffix Dropdown">
+                                <select name="suffix" id="suffix" class="form-select-sm" aria-label="Modify Name Suffix Dropdown">
                                     <cfif #qry.NAMESUFFIX# EQ 'NA' || isNull(#qry.NAMESUFFIX#)>
                                         <option selected disabled hidden>Make Selection</option>
                                     <cfelse>
@@ -108,7 +108,7 @@
                             <h1 class="sm-title">User Info</h1>
                             <div class="form-input">
                                 <label for="company">Company:</label>
-                                <select name="company" class="form-select-md mb-3" aria-label="Modify Company Data">
+                                <select name="company" id="company" class="form-select-md mb-3" aria-label="Modify Company Data">
                                     <cfif #qry.COMPANYID# EQ 10>
                                         <option selected disabled hidden>Make Selection</option>
                                     <cfelse>
@@ -164,7 +164,7 @@
         
                             <div class="form-input">
                                 <label for="state">State:</label>
-                                <select name="state" class="form-select-md mb-3" id="state">
+                                <select name="state" id="state" class="form-select-md mb-3" id="state">
                                     <option selected hidden value=#addr.STATE#>#addr.STATE#</option>
                     
                                     <cfloop query="states">
@@ -179,8 +179,8 @@
                                 <input type="text" class="form-control-sm" id="zip" name="zip" value=#addr.ZIPCODE#>
                             </div>
                         </div>
-                        <div class="d-grid gap-2 col-2 mx-auto">
-                            <input class="btn-secondary" type="submit" value="Submit" name="submit" id="submit">
+                        <div class="d-grid gap-2 col-2 mx-auto mt-3">
+                            <input class="btn-secondary" type="submit" value="Submit" onclick="return validateForm(this)" name="submit" id="submit">
                         </div>
                     </form>
                 </div>

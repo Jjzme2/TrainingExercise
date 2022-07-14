@@ -11,7 +11,7 @@ a {
 }
 
 body {
-    background-color: rgba(255, 255, 255, 0.404);
+    background-color: rgb(221, 221, 221);
     color: black;
     font-family: 'Merriweather', serif;
 }
@@ -75,7 +75,7 @@ body {
 
 .group {
     align-items: flex-start;
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
     box-shadow: 1px 1px 5px black;
     display: flex;
     min-height: 300px;
@@ -196,6 +196,18 @@ html {
     font-size: 1.33rem;
     text-align: center;
     font-style: italic;
+}
+
+.page-view{
+    display: flex;
+    max-width: 80%;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.readOnly-input{
+    background-color: rgba(0, 0, 0, 0);
+    text-align: start;
 }
 
 .sm-title {

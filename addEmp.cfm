@@ -33,7 +33,7 @@
                 <cfinclude  template="/navbar.cfm">
 
                 <div class="flex-container group-nbg">
-                    <h1 class="error-text" id="error-text"></h1>
+<!---                     <h1 class="error-text" id="error-text"></h1> --->
 
                     <form class="form" action="/Gateway/Add.cfm" name="myForm" id="myForm" method="post">
 <!--------------    -------------------------------------------------------------Contact Info --------------------------------------------------------------------------------------------------------------->
@@ -42,7 +42,7 @@
                             <h1 class="sm-title">User Info</h1>
 
                             <div class="form-input">
-                                <label for="fname">First Name:</label>
+                                                                    <label for="fname">First Name:</label>
                                  <input type="text" class="form-control" id="fname" name="fname" autocomplete="off"  value="">
                              </div>  
 
@@ -56,7 +56,7 @@
 
                              <div class="form-input">
                                 <label for="suffix">Suffix:</label>
-                                <select name="suffix" class="form-select-sm" aria-label="Name Suffix Dropdown">
+                                <select name="suffix" id="suffix" class="form-select-sm" aria-label="Name Suffix Dropdown">
                                         <option selected hidden value="">Make Selection</option>
                                     <cfloop query="suf">
                                         <option value=#suf.NAME#>#suf.NAME#</option>
@@ -115,7 +115,7 @@
 
                              <div class="form-input">
                                 <label for="state">State:</label>
-                                <select name="state" class="form-select-sm" aria-label="State Dropdown">
+                                <select name="state" id="state" class="form-select-sm" aria-label="State Dropdown">
                                         <option selected hidden value="">Make Selection</option>
                                     <cfloop query="states">
                                         <option value=#states.STATEINITIALS#>#states.STATEINITIALS#</option>
@@ -138,7 +138,7 @@
 
                             <div class="form-input">
                                 <label for="company">Company:</label>
-                                <select name="company" class="form-select-sm" aria-label="Company Dropdown">
+                                <select name="company" id="company" class="form-select-sm" aria-label="Company Dropdown">
                                         <option selected hidden value="10">Make Selection</option>
                                     <cfloop query="company">
                                         <option value=#company.COMPANYID#>#company.COMPANYNAME#</option>
@@ -151,8 +151,8 @@
                                 <input type="date" class="form-control" id="startDate" name="startDate" value=#DateFormat(now(),'yyyy-mm-dd')#>
                             </div>
                         </div>
-                        <div class="d-grid gap-2 col-2 mx-auto">
-                            <input class="btn-secondary" type="submit" value="Submit" name="submit" id="submit">
+                        <div class="d-grid gap-2 col-2 mx-auto mt-3">
+                            <input class="btn-secondary" type="submit" value="Submit" onclick="return validateForm(this)" name="submit" id="submit">
                         </div>
                     </form>
                 </div>

@@ -21,7 +21,7 @@
 
 
             <cfoutput>
-                <h1 class="error-text" id="error-text"></h1>
+<!---                 <h1 class="error-text" id="error-text"></h1> --->
                 <form action="/Gateway/AddCompany.cfm" name="companyForm" method="post" id="companyForm">
 <!---------------------------------------------------------------------------Contact Info --------------------------------------------------------------------------------------------------------------->
                     <div class="flex-container group">
@@ -32,7 +32,7 @@
 <!---------------------------------------------------------------------------submit --------------------------------------------------------------------------------------------------------------->
                     </div>
                     <div class="d-grid gap-2 col-2 mx-auto">
-                        <input class="btn-secondary" type="submit" value="Submit" name="submit" id="submit">
+                        <input class="btn-secondary" type="submit" value="Submit"onclick="return validateCompany(this)" name="submit" id="submit">
                     </div>
                 </form>
             </cfoutput>
