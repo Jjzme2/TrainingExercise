@@ -28,13 +28,13 @@
             </div>
     
             <div class="form-group">
-              <input type="password" class="form-control" id="password" name="password" placeholder="Password" onKeyPress="Check()">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn form-btn" name="loginSubmit">Sign in</button>
+            <button type="submit" class="btn form-btn" onclick="return validateLogin()" name="loginSubmit">Sign in</button>
           </form>
     </div>
 
-    <!---
+    
     <cfinclude  template="footer.cfm"> 
-    --->
+    
 </cfif>

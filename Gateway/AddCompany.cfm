@@ -13,7 +13,7 @@
                 <cflocation  url="/errPage.cfm" addtoken="no">
 <!---------------------------------------------------------------------------Validation PASS --------------------------------------------------------------------------------------------------------------->
             <cfelse>
-                <cfif !isValid("variableName", #form.companyName#)>
+                <cfif !isValid("string", #form.companyName#)>
                     <cfset session.Errors.Append("Please make sure you have fully filled out the Company Form when creating a new company.")>
                </cfif>
                

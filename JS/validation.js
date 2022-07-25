@@ -1,278 +1,798 @@
+/*                                                                            Variables Declared                                                                                        */
 var errors = [];
-var submitBtn =  document.getElementById("submit");
-var pageTitle = document.getElementById("page-title");
-var errTxt = document.getElementById("error-text");
+var submitBtn =  getElementByID("submit");
+var pageTitle = getElementByID("page-title");
 var path = window.location.pathname;
-var myForm = document.forms["myForm"];
+var myForm = getForm["myForm"];
+var employeeData = {};
 
+/*                                                                            RegEx                                                                                         */
+var emailTest = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+var numberTest = /\d/;
+var phoneTest = /\(?\d{3}\)?[ -]?\d{3}[ -]?\d{4}/g;
+var passwordTest = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/g;
+var usernameTest = /^[a-zA-Z0-9]{3,15}$/g;
 
-window.onload = function(){
-    sessionStorage.setItem('key', 'value');
-    if(errTxt){
-        errTxt.textContent = sessionStorage.getItem("Errors").replaceAll(',', '\n');
+/*                                                                            Used Alot                                                                                        */
+function getElementByID(elementName){
+    return document.getElementById(elementName);
+}
+
+function getForm(formName){
+    return document.forms[formName];
+}
+
+function getChild(parent)
+{
+    let id = parent.children["employeeID"];
+    let fName = parent.children["firstName"];
+    let lName = parent.children["lastName"];
+    let sName = parent.children["sName"];
+    let phone = parent.children["phone"];
+    let email = parent.children["email"];
+    let username = parent.children["username"];
+    let password = parent.children["password"]
+    let streetNumber = parent.children["streetNum"];
+    let streetName = parent.children["street"];
+    let city = parent.children["city"];
+    let state = parent.children["state"];
+    let stateID = parent.children["stateID"];
+    let zipCode = parent.children["zipCode"];
+
+    let phoneNumber = {
+        submitted: phone.innerHTML
+        ,clean: phone.innerHTML.replace(/[^0-9]/g, "")
     }
+
+    let grouped = phoneNumber.clean.split(/(\d{3})(\d{3})(\d{4})/g);
+    let phoneFormatted = "(" + grouped[1] + ") " + grouped[2] + "-" + grouped[3]; 
+    
+    let namedEmployee = {
+        id: id.innerHTML
+        ,firstName: fName.innerHTML
+        ,lastName: lName.innerHTML
+        ,suffix: sName.innerHTML
+        ,phone: phoneFormatted
+        ,email: email.innerHTML
+        ,username: username.innerHTML
+        ,password: password.value
+        ,streetNumber: streetNumber.innerHTML
+        ,streetName: streetName.innerHTML
+        ,city: city.innerHTML
+        ,state: state.innerHTML
+        ,stateID: stateID.innerHTML
+        ,zipCode: zipCode.innerHTML
+
+
+        
+        // Date Stuff
+        // ,isActive: active.innerHTML
+        // ,activationDate: activationDate.innerHTML
+        // ,hireDate: hireDate.innerHTML
+    }
+    return namedEmployee;
+}
+
+/*                                                                         Start Data Tables                                                                                        */
+/*                                                                            Company.cfm                                                                                         */
+
+document.addEventListener('DOMContentLoaded', function () {
+    var table = new DataTable('#example', {
+    "search": true,
+    "paging": true
+    })
+});
+
+/*                                                                            Welcome.cfm                                                                                        */
+
+document.addEventListener('DOMContentLoaded', function () {
+    var companyTable = new DataTable('#companyTable', {
+    "search": true,
+    "paging": true,
+    })
+});
+
+/*                                                                            Database.cfm                                                                                        */
+
+document.addEventListener('DOMContentLoaded', function () {
+    var databaseTable = new DataTable('#databaseTable', {
+    "search": true,
+    "paging": true,
+    })
+});
+
+/*                                                                         End Data Tables                                                                                        */
+
+
+/*                                                                            Company.cfm                                                                                        */
+function sendData(element){
+    // Values
+    employeeData = {
+        contact:
+        {
+            first: getChild(element).firstName 
+            ,last: getChild(element).lastName
+            ,suffix: getChild(element).suffix
+            ,fullName: getChild(element).firstName + " " + getChild(element).lastName
+            ,phone: getChild(element).phone
+             ,email: getChild(element).email
+           
+                // Address Info
+             ,streetNumber: getChild(element).streetNumber
+             ,streetName: getChild(element).streetName
+             ,cityName: getChild(element).city
+             ,state: getChild(element).state
+             ,stateID: getChild(element).stateID
+             ,zipCode: getChild(element).zipCode
+            //  ,fullAddress: streetNum + " " + streetName + " " + city + ", " + state + " " + zipCode
+
+        }
+
+        ,hire:
+        {
+            employeeID: getChild(element).id
+            ,companyID:getChild(element).companyID
+            ,companyName:getChild(element).companyName
+            ,hireDate: getChild(element).hireDate
+            ,isActive: getChild(element).isActive
+            ,recentActivation: getChild(element).recentActivation
+            //  User
+             ,username: getChild(element).username
+             ,password: getChild(element).pass
+        }
+    }
+    populateModal(employeeData);
+}
+
+function sendToCompany(element){
+    let companyInfo = {
+        name: element.innerHTML
+        ,id: element.getAttribute("companyID")
+    }
+    let companyID = element.getAttribute("companyID");
+    window.location.assign("/company.cfm?ID=" + companyInfo.id);
 }
 
 
-function validateForm(event) {
-    var alertMsg ="";
+function sendToFullEmp(element){  
+    let employeeID = element.getAttribute("employeeID");
+    window.location.assign("/fullEmp.cfm?ID=" + employeeID);
+}
 
-        var fname = document.getElementById("fname");
-        var email = document.getElementById("email");
-        var lName = document.getElementById("lname");
-        var username = document.getElementById("username");
-        var pass = document.getElementById("pass");
-        var confPass = document.getElementById("confPass");
-        var streetNum = document.getElementById("streetNum");
-        var street = document.getElementById("street");
-        var zip = document.getElementById("zip");
-        var city = document.getElementById("city");
-        var state = document.getElementById("state");
-        var fname = document.getElementById("fname");
-        var suffix = document.getElementById("suffix");
-        var company = document.getElementById("company");
+/*                                                                            Company.cfm                                                                                        */
+function populateModal(employee){
+    console.log("populating with info from " + employee.contact.fullName)
+    let body = getElementByID("modal-body");
+    getElementByID("modal-fname").value = employee.contact.first;
+    getElementByID("modal-lname").value = employee.contact.last;
+    getElementByID("modal-suffix").value = employee.contact.suffix;
+    getElementByID("modal-tel").value = employee.contact.phone;
+    getElementByID("modal-email").value = employee.contact.email;
+    getElementByID("modal-streetNum").value = employee.contact.streetNumber;
+    getElementByID("modal-street").value = employee.contact.streetName;
+    getElementByID("modal-state-selected").innerHTML = employee.contact.state;
+    getElementByID("modal-state-selected").value = employee.contact.state;
+    getElementByID("modal-city").value = employee.contact.cityName;
+    getElementByID("modal-zip").value = employee.contact.zipCode;
+    getElementByID("modal-username").value = employee.hire.username;
+    getElementByID("modal-password").value = employee.contact.password;
+}
 
-        //RegEx
-        var emailTest = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-        var numberTest = /\d/;
+/*                                                                            Company.cfm                                                                                        */
+function CloseModal(){
+    console.log("Closed.");
+    window.location.reload();
+}
 
-            if(email.value == ""){
-                alertMsg += "Email must have content.\n" ;
-            }else if(!emailTest.test(email.value)){ alertMsg += "Email must meet standard Email format.\n"; }
+/*                                                                            Company.cfm                                                                                        */
+function validate(that)
+{
+    errors = [];
+    sessionStorage.setItem('Errors', JSON.stringify(errors));
 
-            if(fname.value == ""){
-                alertMsg += "First Name must have content.\n";
-            }else if(numberTest.test(fname.value)){ alertMsg += "First name can not contain Numbers.\n"; }
-
-            if(lName.value == ""){
-                alertMsg += "Last Name must have content.\n";
-            }else if(numberTest.test(lName.value)){ alertMsg += "Last name can not contain Numbers.\n"; }
-
-            if(username.value == ""){
-                alertMsg += "Username must have content.\n";
-            }
-
-            if(pass.value == ""){
-                alertMsg += "Password must have content.\n";
-            }else if(pass.value.length < 8){ alertMsg += "Password must meet minimum length requirements.\n"; }
-
-            if(confPass.value == ""){
-                alertMsg += "Password Confirmation must have content.\n";
-            }else if(confPass.value.length < 8){ alertMsg += "Password Confirmation must meet minimum length requirements.\n"; }
-
-            if(streetNum.value == ""){
-                alertMsg += "Street Number must have content.\n";
-            }else if(isNaN(streetNum.value)){ alertMsg += "Street Number must be a number.\n"; }
-
-            if(zip.value == ""){
-                alertMsg += "Zip Code must have content.\n";
-            }else if(isNaN(zip.value)){ alertMsg += "Zip Code must be a number.\n"; }
-
-            if(city.value == ""){
-                alertMsg += "City must have content.\n";
-            }else if(numberTest.test(city.value)){ alertMsg += "City name can not contain Numbers.\n"; }
-
-            if(street.value == ""){
-                alertMsg += "Street must have content.\n";
-            }else if(numberTest.test(street.value)){ alertMsg += "Street name can not contain Numbers.\n"; }
-
-            if(suffix.value == ""){
-                alertMsg += "Suffix must have content.\n";
-            }
-
-            if(state.value == ""){
-                alertMsg += "State must have content.\n";
-            }
-
-            if(company.value == 10){
-                if(alertMsg == ""){
-                    alert("Employee will be added to Employee pool since no Company is defined.\n");
-            }
-        }
-            
-            if(alertMsg != ""){
-                var err = alertMsg.split("\n");
-                sessionStorage.setItem("Errors", err);
-                event.formAction = "/errPage.cfm";
-                return true;
-            }
-            else{AllowPass(); return false;}
+    var fname = getElementByID("modal-fname");
+    var email = getElementByID("modal-email");
+    var lName = getElementByID("modal-lname");
+    var username = getElementByID("modal-username");
+    var streetNum = getElementByID("modal-streetNum");
+    var street = getElementByID("modal-street");
+    var zip = getElementByID("modal-zip");
+    var city = getElementByID("modal-city");
+    var state = getElementByID("modal-state-selected");
+    // var suffix = getElement("modal-suffix");
+    var phone = getElementByID("modal-tel");
 
 
+    var isGood = true;
+
+    // Email
+    if(email.value == "")
+    {
+        errors.push("Email must have content.");
+    }
+    else if(!emailTest.test(email.value))
+    { 
+        errors.push("Email must meet standard email format.");
+    }
+
+    //First Name
+    if(fname.value == "")
+    {
+        errors.push("First name must have content.");
+    }
+    else if(numberTest.test(fname.value))
+    { 
+        errors.push("First name can not contain numbers.");
+    }
+
+    //Last Name
+    if(lName.value == "")
+    {
+        errors.push("Last name can not contain numbers.");
+    }
+    else if(numberTest.test(lName.value))
+    { 
+        errors.push("Last name can not contain numbers.");
+    }
 
 
+    //Phone 
+    if(phone.value == "")
+    {
+        errors.push("Phone must contain content.");
+    }
+    else if(!phoneTest.test(phone.value))
+    { 
+        errors.push("Phone must only contain numbers.");
+    }
 
-            // if(alertMsg != ""){
-            //     alert(alertMsg);
-            //     return false;
-            // }
+    //Username
+    if(username.value == "")
+    {
+        errors.push("Username must have content.");
+    }
+    else if(!usernameTest.test(username.value))
+    {
+        errors.push("Username can only contain letters and numbers, and must be between 3 and 16 characters.");
+    }
 
-        // if(streetNum != null){
-        //     Check(streetNum);
-        // }
-
-        // if(zip != null){
-        //     Check(zip);
-        // }
-
-        // if(state != null){
-        //     Check(state);
-        // }
-
-        // if(street != null){
-        //     Check(street);
-        // }
-
-        // if(confPass != null){
-        //     Check(confPass);
-        // }
-
-        // if(pass != null){
-        //     Check(pass);
-        // }
-
-        // if(username != null){
-        //     Check(username);
-        // }
-
-        // if(suffix != null){
-        //     Check(suffix);
-        // }
-
-        // if(lName != null){
-        //     Check(lName);
-        // }
-
-        // if(fname != null){
-        //     Check(fname);
-        // }
-
-        // if(city != null){
-        //     Check(city);
-        // }
-
-        // email?Check(email):null;
-        // streetNum?Check(streetNum):null;
-        // zip?Check(zip):null;
-        // state?Check(state):null;
-        // street?Check(street):null;
-        // confPass?Check(confPass):null;
-        // pass?Check(pass):null;
-        // username?Check(username):null;
-        // suffix?Check(suffix):null;
-        // lName?Check(lName):null;
-        // fname?Check(fname):null;
-        // city?Check(city):null;
-
-        // pass&&confPass?CheckMatching(pass, confPass):null;
-// }
-
-    // if(form.name == "companyForm"){
-    //     // alert("Company Form");
-    //     let company = {field: document.forms["companyForm"]["companyName"], user: "Company Name"}
-    //     company?Check(company):null;
+    // if(pass.value == "")
+    // {
+    //     errors.push("Password must have content.");
+    // }
+    // else if(!passwordTest.test(pass.value))
+    // { 
+    //     errors.push("Password must contain at least eight characters with one upper case letter, one lower case letter, one number, and one special character.");
+    // }
+    
+    // if(confPass.value == "")
+    // {
+    //     errors.push("Password confirmation must have content.");
+    // }
+    // else if(confPass.value.length < 8)
+    // {
+    //     errors.push("Password confirmation must meet minimum length requirements.");
     // }
 
-    // if(errors.length > 0){DisplayErrors(); event.formAction = "/errPage.cfm"}
-}
+    // if(confPass.value != pass.value)
+    // {
+    //     errors.push("Passwords must match.");
+    // }
 
-function validateCompany(event){
-    alertMsg ="";
-    var companyName = document.getElementById("companyName");
-    
-    if(companyName.value == ""){
-        alertMsg += "Company Name must have content.";
+    if(streetNum.value == 0)
+    {
+        errors.push("Street number must have content.");
+    }
+    else if(isNaN(streetNum.value))
+    { 
+        errors.push("Street number must be a number.");
     }
 
-    if(alertMsg != ""){
-        var err = alertMsg.split("\n");
-        sessionStorage.setItem("Errors", err);
-        event.formAction = "/errPage.cfm?Errors=" + err;
+    if(zip.value == 0)
+    {
+        errors.push("Zip code must have content.");
+    }
+    else if(isNaN(zip.value))
+    { 
+        errors.push("Zip code must be a number.");
+    }
+
+    if(city.value == "")
+    {
+        errors.push("City must be a number.");
+    }
+    else if(numberTest.test(city.value))
+    { 
+        errors.push("City name can not contain numbers.");
+    }
+
+    if(street.value == "")
+    {
+        errors.push("Street must have content.");
+    }
+    else if(numberTest.test(street.value))
+    { 
+        errors.push("Street name can not contain numbers.");
+    }
+
+    // if(suffix.value == "")
+    // {
+    //     errors.push("Suffix must have content.");
+    // }
+
+    if(state.value == "")
+    {
+        errors.push("State must have content.");
+    }
+
+    // if(company.value == 10)
+    // {
+    //     if(errors.length == 0)
+    //     {
+    //         alert("Employee will be added to employee pool since no company is defined.");
+    //         // return true;
+    //     }
+    // }
+        console.log(errors);
+    if(errors.length > 0)
+    {
+        isGood = false;
+        sessionStorage.setItem('Errors', JSON.stringify(errors)); 
+        window.location.assign("/errPage.cfm"); 
+        return false;
+    }
+    else
+    {
+        that.form.action="/Gateway/modify.cfm?ID=" + employeeData.hire.employeeID;
         return true;
     }
-    else{AllowPass(); return false;}
 }
 
-//Checks
-
-// function Check(element){
-//     // else{element.field.value.isEmpty()?SendErrorMessage(element.user + " must be filled out.", element.field):null;
-//         if(element.field.isEmpty(element.user + " must be filled out.", element.field)){
-//             SendErrorMessage()
-//         }
-
-//         if(element.user == 'First Name'|| element.user == 'Last Name' || element.user == 'City' || element.user == "Company Name"){
-//             CheckNumber(element);
-//         }
-
-//         if(element.user == "Password" || element.user == "Confirm Password"){
-//             CheckLength(element, 8);
-//         }
-
-//         if(element.user == "Street" || element.user =="Zip Code"){
-//             CheckLetters(element);
-//         }
-
-//         if(element.user == "Email"){
-//             CheckEmail(element);
-//         }
-//     }
-
-
-
-
-
-
-function CheckNumber(element){
-    element.field.value.hasNumber()?SendErrorMessage(element.user + " can not contain numerics.", element.field):null;
+function terminate(that){
+    console.log(employeeData.hire.employeeID);
+    let address = "/terminateEmp.cfm?ID=" + employeeData.hire.employeeID;
+    window.location.assign(address);
 }
 
-function CheckLength(element, minLength){
-    !element.field.value.meetsLengthReq(minLength)?SendErrorMessage("Confirm that your " + element.user +  " meets minimum length requirements.(" + minLength + ")"):null;
+function activate(that){
+    console.log(employeeData.hire.employeeID);
+    let address = "/Gateway/Activate.cfm?ID=" + employeeData.hire.employeeID;
+    window.location.assign(address);
 }
 
-function CheckLetters(element){
-    element.field.value.hasLetter()?SendErrorMessage(element.user + " can not contain alphabetic characters.", element.field):null;
+/*                                                                            FullEmp.cfm                                                                                        */
+function validateModal(empID) {
+    errors = [];
+    sessionStorage.setItem('Errors', JSON.stringify(errors));
+
+    var fname = getElementByID("fname");
+    var email = getElementByID("email");
+    var lName = getElementByID("lname");
+    var username = getElementByID("username");
+    var pass = getElementByID("pass");
+    var confPass = getElementByID("confPass");
+    var streetNum = getElementByID("streetNum");
+    var street = getElementByID("street");
+    var zip = getElementByID("zip");
+    var city = getElementByID("city");
+    var state = getElementByID("state");
+    var suffix = getElementByID("suffix");
+    var company = getElementByID("company");
+    var phone = getElementByID("tel");
+
+    var isGood = true;
+    // Email
+    if(email.value == "")
+    {
+        errors.push("Email must have content.");
+    }
+    else if(!emailTest.test(email.value))
+    { 
+        errors.push("Email must meet standard email format.");
+    }
+
+    //First Name
+    if(fname.value == "")
+    {
+        errors.push("First name must have content.");
+    }
+    else if(numberTest.test(fname.value))
+    { 
+        errors.push("First name can not contain numbers.");
+    }
+
+    //Last Name
+    if(lName.value == "")
+    {
+        errors.push("Last name can not contain numbers.");
+    }
+    else if(numberTest.test(lName.value))
+    { 
+        errors.push("Last name can not contain numbers.");
+    }
+
+
+    //Phone 
+    if(phone.value == "")
+    {
+        errors.push("Phone must contain content.");
+    }
+    else if(!phoneTest.test(phone.value))
+    { 
+        errors.push("Phone must only contain numbers.");
+    }
+
+    //Username
+    if(username.value == "")
+    {
+        errors.push("Username must have content.");
+    }
+    else if(!usernameTest.test(username.value))
+    {
+        errors.push("Username can only contain letters and numbers, and must be between 3 and 16 characters.");
+    }
+
+    if(pass.value == "")
+    {
+        errors.push("Password must have content.");
+    }
+    else if(!passwordTest.test(pass.value))
+    { 
+        errors.push("Password must contain at least eight characters with one upper case letter, one lower case letter, one number, and one special character.");
+    }
+    
+    if(confPass.value == "")
+    {
+        errors.push("Password confirmation must have content.");
+    }
+    else if(confPass.value.length < 8)
+    {
+        errors.push("Password confirmation must meet minimum length requirements.");
+    }
+
+    if(confPass.value != pass.value)
+    {
+        errors.push("Passwords must match.");
+    }
+
+    if(streetNum.value == 0)
+    {
+        errors.push("Street number must have content.");
+    }
+    else if(isNaN(streetNum.value))
+    { 
+        errors.push("Street number must be a number.");
+    }
+
+    if(zip.value == 0)
+    {
+        errors.push("Zip code must have content.");
+    }
+    else if(isNaN(zip.value))
+    { 
+        errors.push("Zip code must be a number.");
+    }
+
+    if(city.value == "")
+    {
+        errors.push("City must be a number.");
+    }
+    else if(numberTest.test(city.value))
+    { 
+        errors.push("City name can not contain numbers.");
+    }
+
+    if(street.value == "")
+    {
+        errors.push("Street must have content.");
+    }
+    else if(numberTest.test(street.value))
+    { 
+        errors.push("Street name can not contain numbers.");
+    }
+
+    if(suffix.value == "")
+    {
+        errors.push("Suffix must have content.");
+    }
+
+    if(state.value == "")
+    {
+        errors.push("State must have content.");
+    }
+
+    if(company.value == 10)
+    {
+        if(errors.length == 0)
+        {
+            alert("Employee will be added to employee pool since no company is defined.");
+            // return true;
+        }
+    }
+
+    if(errors.length > 0)
+    {
+        isGood = false;
+        sessionStorage.setItem('Errors', JSON.stringify(errors)); 
+        window.location.assign("/errPage.cfm"); 
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
-function CheckEmail(element){
-    !element.field.value.validEmail()?SendErrorMessage(element.user + " does not meet standard email formatting.", element.field):null;
+/*                                                                            ModifyEmp.cfm/AddEmp.cfm                                                                                        */
+function validateForm() {
+    errors = [];
+    sessionStorage.setItem('Errors', JSON.stringify(errors));
+
+    var fname = getElementByID("fname");
+    var email = getElementByID("email");
+    var lName = getElementByID("lname");
+    var username = getElementByID("username");
+    var pass = getElementByID("pass");
+    var confPass = getElementByID("confPass");
+    var streetNum = getElementByID("streetNum");
+    var street = getElementByID("street");
+    var zip = getElementByID("zip");
+    var city = getElementByID("city");
+    var state = getElementByID("state");
+    var suffix = getElementByID("suffix");
+    var company = getElementByID("company");
+    var phone = getElementByID("tel");
+
+
+    var isGood = true;
+
+    // Email
+    if(email.value == "")
+    {
+        errors.push("Email must have content.");
+    }
+    else if(!emailTest.test(email.value))
+    { 
+        errors.push("Email must meet standard email format.");
+    }
+
+    //First Name
+    if(fname.value == "")
+    {
+        errors.push("First name must have content.");
+    }
+    else if(numberTest.test(fname.value))
+    { 
+        errors.push("First name can not contain numbers.");
+    }
+
+    //Last Name
+    if(lName.value == "")
+    {
+        errors.push("Last name can not contain numbers.");
+    }
+    else if(numberTest.test(lName.value))
+    { 
+        errors.push("Last name can not contain numbers.");
+    }
+
+
+    //Phone 
+    if(phone.value == "")
+    {
+        errors.push("Phone must contain content.");
+    }
+    else if(!phoneTest.test(phone.value))
+    { 
+        errors.push("Phone must only contain numbers.");
+        let cleanedPhone = phone.value.replace(/[^0-9]/g, "");
+    }
+
+    //Username
+    if(username.value == "")
+    {
+        errors.push("Username must have content.");
+    }
+    else if(!usernameTest.test(username.value))
+    {
+        errors.push("Username can only contain letters and numbers, and must be between 3 and 16 characters.");
+    }
+
+    if(pass.value == "")
+    {
+        errors.push("Password must have content.");
+    }
+    else if(!passwordTest.test(pass.value))
+    { 
+        errors.push("Password must contain at least eight characters with one upper case letter, one lower case letter, one number, and one special character.");
+    }
+    
+    if(confPass.value == "")
+    {
+        errors.push("Password confirmation must have content.");
+    }
+    else if(confPass.value.length < 8)
+    {
+        errors.push("Password confirmation must meet minimum length requirements.");
+    }
+
+    if(confPass.value != pass.value)
+    {
+        errors.push("Passwords must match.");
+    }
+
+    if(streetNum.value == 0)
+    {
+        errors.push("Street number must have content.");
+    }
+    else if(isNaN(streetNum.value))
+    { 
+        errors.push("Street number must be a number.");
+    }
+
+    if(zip.value == 0)
+    {
+        errors.push("Zip code must have content.");
+    }
+    else if(isNaN(zip.value))
+    { 
+        errors.push("Zip code must be a number.");
+    }
+
+    if(city.value == "")
+    {
+        errors.push("City must be a number.");
+    }
+    else if(numberTest.test(city.value))
+    { 
+        errors.push("City name can not contain numbers.");
+    }
+
+    if(street.value == "")
+    {
+        errors.push("Street must have content.");
+    }
+    else if(numberTest.test(street.value))
+    { 
+        errors.push("Street name can not contain numbers.");
+    }
+
+    if(suffix.value == "")
+    {
+        errors.push("Suffix must have content.");
+    }
+
+    if(state.value == "")
+    {
+        errors.push("State must have content.");
+    }
+
+    if(company.value == 10)
+    {
+        if(errors.length == 0)
+        {
+            alert("Employee will be added to employee pool since no company is defined.");
+            // return true;
+        }
+    }
+
+    if(errors.length > 0)
+    {
+        isGood = false;
+        sessionStorage.setItem('Errors', JSON.stringify(errors)); 
+        window.location.assign("/errPage.cfm"); 
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
+/*                                                                            addCompany.cfm                                                                                        */
+function validateCompany(that)
+{
+    errors = [];
+    sessionStorage.setItem('Errors', JSON.stringify(errors));
+    var isGood = true;
 
-function CheckMatching(_string1, _string2){
-    !_string1.field.value.matches(_string2.field.value)?SendErrorMessage(_string1.user + " and " + _string2.user + " do not match."):null;
+    var companyName = getElementByID("companyNameInput");
+    if(companyName.value == "" || companyName.value == null)
+    {
+        errors.push("Company name must have content");
+    }
+
+
+
+    console.log(errors);
+    if(errors.length > 0)
+    {
+        isGood = false;
+        sessionStorage.setItem('Errors', JSON.stringify(errors)); 
+        window.location.assign("/errPage.cfm"); 
+        return false;
+    }
+    else
+    {
+        that.form.action="/Gateway/AddCompany.cfm";
+        return true;
+    }
+
+
+
+
+
+
+
+
+
+    if(errors.length > 0)
+    {
+        isGood = false;
+        sessionStorage.setItem('Errors', JSON.stringify(errors)); 
+        window.location.assign("/errPage.cfm"); 
+        return false;
+    }
+    else
+    {
+        // Removing this line will revert to the older version
+        that.form.action="/Gateway/AddCompany.cfm";
+        console.log(that.form.action);
+        return true;
+    }
+}
+/*                                                                            login.cfm                                                                                        */
+
+function validateLogin()
+{
+    errors = [];
+    sessionStorage.setItem('Errors', JSON.stringify(errors));
+    var isGood = true;
+
+
+    var userName = getElementByID("username");
+    var pass = getElementByID("password");
+
+    if(userName.value == ""){
+        errors.push("Username must have content")
+    }
+    
+    if(pass.value == ""){
+        errors.push("Password must have content")
+    }
+
+    if(errors.length > 0)
+    {
+        isGood = false;
+        sessionStorage.setItem('Errors', JSON.stringify(errors)); 
+        window.location.assign("/errPage.cfm"); 
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
+/*                                                                            Display, errPage.cfm                                                                                       */
+function displayErrors()
+{ 
+    var errText = document.getElementById("error-text");
+    var errArray = JSON.parse(sessionStorage.getItem('Errors')); 
+    console.log(errArray);
 
-function SendErrorMessage(err){
-    errors.push(err);
-
-    sessionStorage.clear("Errors");
-    sessionStorage.setItem("Errors", errors);
+    for (var i = 0; i < errArray.length; i++)
+    {
+        errText.innerHTML += errArray[i] + "<br/>";
+    }
 }
 
-function DisplayErrors(){
-    let myErr = sessionStorage.setItem("Errors", errors);
-    errTxt.innerHTML = myErr.toString().replaceAll(',', '<br>');
-    errTxt.hidden = false;
-    alert(errors.toString().replaceAll(',', '<br>'));
-
-    window.scrollTo(0,0);
-}
-
-function AllowPass(){
-    sessionStorage.clear("Errors");
-    errTxt.hidden = true;
-    // alert("Good Form");
-}
-
-
-//Not Needed, just a fun way to get url vars.
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
+/*Notes:
+1. Add Phone Number -- In SQL and FullEmp.cfm/ModifyEmp/AddEmp/GatewayModify/GatewayAdd -- done
+2. Add IsGood Variable to repeat less. -- Done
+3. Add Regex for Address -- Need to do
+4. Add Regex for password -- Done
+5. Add Regex for Phone(TEL/tel) -- Done 
+6. Search and Sort functionality
+7. Data Tables
+ */

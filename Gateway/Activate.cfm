@@ -15,7 +15,7 @@
                 WHERE EMPLOYEEID=<cfqueryparam value=#URL.ID# cfsqltype="CF_SQL_INTEGER">
             </cfquery>
         
-            <cflocation  url="../welcome.cfm" addtoken="no">
+            <cflocation  url="/database.cfm" addtoken="no">
         <cfelse>
             <cfset session.Errors.append("Please make sure you have appropriate privileges to access this content.")>
             <cflocation  url="/errPage.cfm" addtoken="no">      

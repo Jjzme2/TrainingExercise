@@ -6,9 +6,19 @@
     font-family: 'Ubuntu', sans-serif;
 */
 
+
 a {
     color: blue;
 }
+
+.activeBG{
+    background-color: rgba(0, 128, 0, 0.356);
+}
+
+.inactiveBG{
+    background-color: rgba(128, 0, 0, 0.356);
+}
+
 
 body {
     background-color: rgb(221, 221, 221);
@@ -54,15 +64,6 @@ body {
 }
 
 
-.error-text{
-    color: rgb(226, 0, 0);
-    font-size: 1.25rem;
-    font-style: bold;
-    margin-top: 5%;
-    text-align: center;
-    min-width: 800px;
-}
-
 .footer {
     color: black;
     font-size: .75rem;
@@ -89,6 +90,7 @@ body {
     flex-direction: column;
 }
 
+
 .group-nbg {
     align-items: center;
     background-color: rgba(255, 255, 255, 0);
@@ -97,7 +99,6 @@ body {
     margin: auto;
     margin-top: 10%;
     padding: 5px;
-    width: 450px;
     align-content: center;
     flex-wrap: wrap;
     justify-content: center;
@@ -121,6 +122,7 @@ body {
     margin-left: auto;
 }
 
+
 .form-title {
     font-size: 1.45rem;
     color: black;
@@ -129,16 +131,20 @@ body {
     font-family: sans-serif;
     font-weight: bold;
 }
+/* Make isadmin more visible */
 
 .group input {
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-    border-bottom: solid 1px black;
+    /* background-color: rgba(221, 221, 221); */
+    /* border: none; */
+    /* border-bottom: solid 1px black; */
+    /* border-top:solid 1px black; */
+    border: solid 1px black;
     border-radius: 0;
+    box-shadow: 1px 1px 1px black;
     color: black;
-    font-size: .85rem;
+    font-size: 1.0rem;
     margin: auto;
-    margin-bottom: 5%;
+    /* margin-bottom: 5%; */
 }
 
 .group label {
@@ -168,7 +174,7 @@ html {
 }
 
 .navbar-brand:hover {
-    color: lightblue;
+    color: rgb(0, 0, 0);
     font-size: 1.3rem;
 }
 
@@ -219,7 +225,7 @@ html {
 .table-highlighted {
     background-color: rgb(235, 235, 235);
     margin: auto;
-    width: 60%;
+    width: 80%;
 }
 
 .table-highlighted th {

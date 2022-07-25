@@ -17,7 +17,7 @@
                     WHERE EMPLOYEEID=<cfqueryparam value=#URL.ID# cfsqltype="CF_SQL_INTEGER">
                 </cfquery>
                 
-                <cflocation  url="../welcome.cfm" addtoken="no">
+                <cflocation  url="/database.cfm" addtoken="no">
             <cfelse>
                 <cfset session.Errors.append("You can not deactivate yourself!")>
                 <cflocation  url="/errPage.cfm" addtoken="no">
